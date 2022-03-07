@@ -31,7 +31,7 @@ void loop() {
 
   // TODO: replace with your code
   // publish a message roughly every second.
-  
+  //read sensor
   if (millis() - lastMillis > 60000) {
     
    if (!mqttClient->connected()) {
@@ -40,10 +40,13 @@ void loop() {
       
     }
    if(mqttClient->connected()){
-    Serial.println("mqtt connected");      
-
-    String payload_data = String("{\"name parameter 1\":")+24+
-                          String(",\"name parameter 2\":")+70+
+    Serial.println("mqtt connected");   
+   
+    float data_sensor_temp = 24 ; //data
+    float data_sensor_hum = 70 ; //data
+    
+    String payload_data = String("{\"temperature\":")+data_sensor_temp+
+                          String(",\"humidity\":")+data_sensor_hum+
                           String("}");
 
     publishTelemetry(payload_data);
